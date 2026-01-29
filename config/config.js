@@ -9,15 +9,15 @@
  * see https://docs.magicmirror.builders/configuration/introduction.html#enviromnent-variables
  */
 let config = {
-    address: "localhost",	// Address to listen on, can be:
+    address: "0.0.0.0",	// Address to listen on, can be:
     // - "localhost", "127.0.0.1", "::1" to listen on loopback interface
     // - another specific IPv4/6 to listen on a specific interface
-    // - "0.0.0.0", "::" to listen on any interface
+    // - "0.0.0.0", "::" to listen on any interfacem
     // Default, when address config is left out or empty, is "localhost"
     port: 8080,
     basePath: "/",	// The URL path where MagicMirror² is hosted. If you are using a Reverse proxy
     // you must set the sub path here. basePath must end with a /
-    ipWhitelist: ["127.0.0.1", "::ffff:127.0.0.1", "::1"],	// Set [] to allow all IP addresses
+    ipWhitelist: [],	// Set [] to allow all IP addresses
     // or add a specific IPv4 of 192.168.1.5 :
     // ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.1.5"],
     // or IPv4 range of 192.168.3.0 --> 192.168.3.15 use CIDR format :
@@ -151,6 +151,32 @@ let config = {
                 broadcastNewsUpdates: true
             }
         },
+
+	{
+  module: "MMM-Remote-Control",
+  position: "top_right", // oder wo du das Interface haben willst
+  config: {
+    // Keine Authentifizierung, alle Geräte im LAN können zugreifen
+    // Achtung: öffnet den Port für alle Geräte in deinem Netzwerk
+    secureEndpoints: false,
+       showQRCode: false,
+
+    // Port für das Remote-Control Interface
+    port: 8080, 
+
+    // Hier kannst du explizit Hosts/IPs erlauben
+    // "*" = alle im LAN, du kannst auch z.B. ["192.168.0.*"] nutzen
+    ipWhitelist: [
+      "127.0.0.1",       // lokal
+      "::1",             // IPv6 lokal
+      "192.168.0.0/24"   // alle Geräte in deinem LAN (ersetze 192.168.0 mit deinem Subnetz)
+    ],
+
+    // Optional: Passwortschutz aktivieren (empfohlen!)
+    // adminUser: "admin",
+    // adminPassword: "deinPasswort"
+  }
+}
     ]
 };
 
