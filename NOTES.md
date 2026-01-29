@@ -8,3 +8,7 @@ git fetch upstream
 git merge upstream/master
 
 
+Added modules as submodules for cloning run:
+git clone --recursive https://github.com/jjoeojieajfhpdsonf/MagicMirror_2.git
+
+

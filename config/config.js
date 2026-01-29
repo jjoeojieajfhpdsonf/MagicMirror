@@ -46,6 +46,35 @@ let config = {
             position: "top_bar"
         },
         {
+            module: 'MMM-WatchDog',
+        },
+        {
+            module: "MMM-ModuleScheduler",
+            config: {
+                global_schedule: [
+                    {from: '0 20 * * *', to: '0 6 * * *', dimlevel: '10'},
+                ],
+            },
+            disabled: true
+        },
+        {
+            disabled: true,
+            module: "MMM-Halloween",
+            position: "fullscreen_above",
+            config: {
+                numberOfGhosts: 10,
+                updateInterval: 1000 * 99999,
+                minSize: 100,
+                maxSize: 400,
+                opacity: 0.35,
+                staticGif: "assets/images/jack.gif",
+                gifPosition: "bottom-left",
+                gifSize: 150,
+                minSpeed: 15,
+                maxSpeed: 25
+            }
+        },
+        {
             module: "MMM-MoonPhase",
             position: "top_left",
             classes: "scheduler",
@@ -86,22 +115,24 @@ let config = {
         {
             module: "weather",
             position: "top_right",
+            header: "Current",
             config: {
                 weatherProvider: "openmeteo",
                 type: "current",
-                lat: 40.776676,
-                lon: -73.971321
+                lat: 47.4628,
+                lon: 8.1858
             }
         },
         {
             module: "weather",
             position: "top_right",
-            header: "Weather Forecast",
+            header: "Forecast",
             config: {
                 weatherProvider: "openmeteo",
                 type: "forecast",
-                lat: 40.776676,
-                lon: -73.971321
+                lat: 47.4628,
+                lon: 8.1858,
+                maxNumberOfDays: 5
             }
         },
         {
